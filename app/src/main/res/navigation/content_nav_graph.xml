@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_nav_graph"
+    app:startDestination="@id/homePageFragment">
+
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.polish.usedaggerhilt.ui.homepagefragment.HomePageFragment"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePageFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.polish.usedaggerhilt.ui.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_addCommentFragment"
+            app:destination="@id/addCommentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCommentFragment"
+        android:name="com.polish.usedaggerhilt.ui.AddCommentFragment"
+        android:label="fragment_add_comment"
+        tools:layout="@layout/fragment_add_comment" />
+</navigation>
