@@ -13,6 +13,7 @@ import com.polish.usedaggerhilt.model.POSTItem
 import com.polish.usedaggerhilt.util.DataState
 import com.polish.usedaggerhilt.viewmodel.POSTViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_home_page.*
 
 /*
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,7 +65,7 @@ class HomePageFragment : Fragment() {
         viewModel.myPost.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<List<POSTItem>> -> {
-                    Log.d(TAG, "result:${dataState.data}")
+//                    Log.d(TAG, "result:${dataState.data}")
                 }
                 is DataState.Error -> {
 
@@ -79,7 +80,14 @@ class HomePageFragment : Fragment() {
          * let us observe the database source from the liveData
          */
         viewModel.databaseSource.observe(viewLifecycleOwner, Observer {
-            Log.d(TAG, "this is from the database: ${it}")
+//            Log.d(TAG, "this is from the database: ${it}")
+            val posts = it
+            val sb = StringBuilder()
+            for (post in posts){
+                sb.append(post.title + "\n")
+
+            }
+            display_content_tv.text = sb.toString()
         })
 
         // Inflate the layout for this fragment
