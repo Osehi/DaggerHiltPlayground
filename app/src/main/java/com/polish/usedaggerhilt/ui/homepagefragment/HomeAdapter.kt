@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.polish.usedaggerhilt.data.localdatasource.PostCacheEntity
 import com.polish.usedaggerhilt.databinding.IlistItemHomePageBinding
 
-class HomePageAdapter(): ListAdapter<PostCacheEntity, HomePageAdapter.POSTViewHolder>(DiffCallback){
+class HomeAdapter(): ListAdapter<PostCacheEntity, HomeAdapter.HomeViewHolder>(DiffCallback){
 
-    class POSTViewHolder(var binding: IlistItemHomePageBinding): RecyclerView.ViewHolder(binding.root) {
+    class HomeViewHolder(var binding: IlistItemHomePageBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(postItem:PostCacheEntity){
 
@@ -32,11 +32,11 @@ class HomePageAdapter(): ListAdapter<PostCacheEntity, HomePageAdapter.POSTViewHo
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): POSTViewHolder {
-        return POSTViewHolder(IlistItemHomePageBinding.inflate(LayoutInflater.from(parent.context)))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
+        return HomeViewHolder(IlistItemHomePageBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-    override fun onBindViewHolder(holder: POSTViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val post = getItem(position)
 
 
