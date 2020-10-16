@@ -8,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.polish.usedaggerhilt.R
+import com.polish.usedaggerhilt.databinding.FragmentHomePageBinding
 import com.polish.usedaggerhilt.model.POSTItem
 import com.polish.usedaggerhilt.util.DataState
 import com.polish.usedaggerhilt.viewmodel.POSTViewModel
@@ -29,6 +32,18 @@ private const val ARG_PARAM2 = "param2"
  */
 @AndroidEntryPoint
 class HomePageFragment : Fragment() {
+
+    lateinit var binding:FragmentHomePageBinding
+
+    /**
+     * reference to the adapter
+     */
+    lateinit var adapter:HomeAdapter
+
+    /**
+     * referece to recyclerview on the widget
+     */
+    lateinit var myRecyclerview:RecyclerView
 
     val TAG = "Home_Page_Fragment"
 
@@ -62,6 +77,15 @@ class HomePageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        binding = FragmentHomePageBinding.inflate(inflater)
+
+        /*initialize the adapter*/
+        adapter = HomeAdapter()
+        /*initialize the recyclerview*/
+        myRecyclerview = binding.homeScreenRv
+        myRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+        /*connect recyclerview to the adapter*/
+        myRecyclerview.adapter = adapter
         viewModel.myPost.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<List<POSTItem>> -> {
@@ -80,7 +104,8 @@ class HomePageFragment : Fragment() {
          * let us observe the database source from the liveData
          */
         viewModel.databaseSource.observe(viewLifecycleOwner, Observer {
-//            Log.d(TAG, "this is from the database: ${it}")
+            Log.d(TAG, "this is from the database: ${it}")
+            /*
             val posts = it
             val sb = StringBuilder()
             for (post in posts){
@@ -88,10 +113,14 @@ class HomePageFragment : Fragment() {
 
             }
             display_content_tv.text = sb.toString()
+
+             */
+            adapter.submitList(it)
         })
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_page, container, false)
+//        return inflater.inflate(R.layout.fragment_home_page, container, false)
+        return binding.root
     }
     /*
     companion object {

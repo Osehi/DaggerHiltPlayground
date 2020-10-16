@@ -30,7 +30,9 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/home_screen_rv"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/ilist_item_home_page"
+                    />
 
                 <ProgressBar
                     android:id="@+id/home_screen_pb"
