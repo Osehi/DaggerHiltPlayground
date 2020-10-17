@@ -32,6 +32,7 @@ class MainRepository constructor(
     suspend fun getMyPost():DataState<List<POSTItem>>{
         return withContext(Dispatchers.IO){
             try {
+                DataState.loading!= null
                 val networkPost = postAPI.getPosts()
                 /**
                  * to insert it into my database

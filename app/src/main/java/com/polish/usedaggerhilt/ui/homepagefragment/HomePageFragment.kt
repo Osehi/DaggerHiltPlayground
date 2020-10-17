@@ -90,6 +90,9 @@ class HomePageFragment : Fragment() {
             when(dataState){
                 is DataState.Success<List<POSTItem>> -> {
 //                    Log.d(TAG, "result:${dataState.data}")
+                    for (post in dataState.data){
+                        viewModel.getMyToken(post.title)
+                    }
                 }
                 is DataState.Error -> {
 

@@ -10,12 +10,14 @@ import com.polish.usedaggerhilt.data.localdatasource.blogdatabaserepo.BlogReposi
 import com.polish.usedaggerhilt.model.POSTItem
 import com.polish.usedaggerhilt.repository.MainRepository
 import com.polish.usedaggerhilt.util.DataState
+import com.polish.usedaggerhilt.util.SharedPreferenceStoreManagerImpl
 import kotlinx.coroutines.*
 
 class POSTViewModel @ViewModelInject constructor(
     private val mainRepository: MainRepository,
     // I passed the blogDatabase object here
     private val blogDatabaseRepo:BlogRepositoryImpl,
+    private val pref:SharedPreferenceStoreManagerImpl,
     @Assisted private val savedStateHandle: SavedStateHandle
 ): ViewModel() {
     /**
@@ -36,6 +38,15 @@ class POSTViewModel @ViewModelInject constructor(
      */
 
     val databaseSource = blogDatabaseRepo.posTitemDao.getPostsLiveData()
+
+    /*
+        capture the sharedPreference
+     */
+    fun getMyToken(token:String){
+         pref.saveAuthToken(token)
+    }
+
+
 
 
     init {
