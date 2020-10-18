@@ -3,7 +3,7 @@ package com.polish.usedaggerhilt.util
 import android.content.SharedPreferences
 import javax.inject.Inject
 
-class SharedPreferenceStoreManagerImpl  (
+class SharedPreferenceStoreManagerImpl @Inject constructor  (
     val pref:SharedPreferences
 ): SharedPreferenceStoreManager {
 
